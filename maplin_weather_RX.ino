@@ -32,8 +32,8 @@ INFORMATION
        that my Maplin sensor only sent 7 "spike" Hi pulses, with the "Low" phase of the first pulse regularly 
        contaminated with a tiny 3us "Hi" spike. 
   N.B. This sketch is designed to tolerate a varying number of preamble "Hi" pulses - anything from 4 to 8 "Hi" pulses is OK 
-       This is done to cater for the problem where initial preamble spikes are missed as desribed above (perhaps because of noise?).
-       If preamble spikes are missed, the total number of pulses will less than they should (e.g. 77 or 78). So, to make 
+       This is done to cater for the problem where initial preamble spikes are missed as described above (perhaps because of noise?).
+       If preamble spikes are missed, the total number of pulses will be less than they should (e.g. 77 or 78). So, to make 
        this sketch more reliable and flexible, an "adj" adjustment value is applied to the array index with a value calculated 
        by looking at the total number of pulses, By doing this, this sketch always looks at the correct "bits" of the message 
        to construct the values e.g. Temperature and Humidity, even if up to 4 preamble spikes are missed!!!. 
