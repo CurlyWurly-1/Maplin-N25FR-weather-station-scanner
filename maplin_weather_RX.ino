@@ -90,7 +90,7 @@ void loop() {
     startTime  = endTime;                 // Remember start time for next state change
     pinstate   = !pinstate;
 
-// If  previous pulse Length is less than 300 Us or greater than 2 second, reset 
+// If  previous pulse Length is less than 100 Us or greater than 2 second, reset 
     if ( ( pulseLen < 100 ) || ( pulseLen > 2000000 ) ) {
       trig          = false; 
     } else {
@@ -108,7 +108,7 @@ void loop() {
 // Store previous state time length (N.B. even indexes are for high, odd index is for low)
     T_array[stateCount] = pulseLen;            // Store Pulse Length 
 
-// If previous state time length is less than minStartLow, then store pulse length
+// If previous state time length is less than minBreakLow, then store pulse length
 // and return to keep recording state 
     if ( ( pulseLen < minBreakLow ) && ( stateCount < maxState ) ) {
       stateCount++;    
@@ -116,15 +116,14 @@ void loop() {
     }
 
 //********************************************************************************
-// If you are here, then we have reached a pause *should be a Low state), so 
+// If you are here, then we have reached a pause (which should be a Low state), so 
 // interpret the array data to decipher the "code" to serial before trying again      
 //********************************************************************************
-
 
 // Calculate Min lengths
     minlengthHI   = 9999;
     minlengthLOW  = 9999;
-// Don;t count last low!!
+// Don't count last low!!
     for(i=0; i<stateCount; i=i+1){
       if ( ( i % 2) == 0 ) {
         if (T_array[i] < minlengthHI)  { minlengthHI  = T_array[i]; }
@@ -140,7 +139,6 @@ void loop() {
     } else {
       unitlen = ( ( minlengthHI + minlengthLOW ) / 2 );
     };    
-
 
 // Interpret message to Binary string
 // This is determined by the length of the "High" state (Even indexes)
@@ -259,4 +257,3 @@ void loop() {
     trig     = false;       // initialise 
   };
 }
-   
