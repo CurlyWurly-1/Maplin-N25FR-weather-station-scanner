@@ -7,14 +7,14 @@ INFORMATION
   N.B. THIS VERSION IS TRIGGERED WHEN A "HIGH" STATE EXCEEDS "minStartHi"
        i.e. THIS VERSION IS TUNED TO TRAP THE FIRST MESSAGE BECAUSE THE MAPLIN "N25FR" TRANSMITTER
             ALTERNATES BETWEEN SENDING ONE AND THEN A PAIR OF MESSAGES SEPARATED BY 48 SECONDS 
-            IN THE 48 SECONDS, THE 433 Mhz RECIEVER THEN RAMPS UP THE AGC TRYING TO FIND A SIGNAL 
-            AND ENDS UP AMPYFYING BACKGROUND NOIDE(UNTIL RANDOM NOISE IS SEEN AGAIN)  
+            IN THE 48 SECONDS, THE 433 Mhz RECEIVER GRADUALLY RAMPS UP ITS AGC TRYING TO FIND A SIGNAL, 
+            AND AFTER ABOUT 1 SECOND OF NO SIGNAL, RANDOM NOISE STARTS BEING SEEN.  
   N.B. Connect pin 2 (rxpin) to the RX module output
   N.B. This sniffer sketch deciphers the following from the outside sensor:
          - Outside Humidity    in %RH
          - Outside Temperature in C 
-         - Outside Wind(Gust) in mph (since last reading)
-         - Outside Wind(Avg)  in mph (since last reading)
+         - Outside Wind(Gust)  in mph (since last reading)
+         - Outside Wind(Avg)   in mph (since last reading)
          - Outside Rainfall Total - since batteries were inserted into the sensor
   N.B. Be aware that the rainfall measurement value is the total volume since sensor switch-on. 
        i.e. It is the receiver that does all the time sliced grouping (e.g.how much per hour/day/month)  
@@ -37,6 +37,8 @@ INFORMATION
        this sketch more reliable and flexible, an "adj" adjustment value is applied to the array index with a value calculated 
        by looking at the total number of pulses, By doing this, this sketch always looks at the correct "bits" of the message 
        to construct the values e.g. Temperature and Humidity, even if up to 4 preamble spikes are missed!!!. 
+  N.B. A logic "1" is indicated by a short "Hi" pulse, a logic "0" is indicated by a long "Hi" pulse. 
+       The "Low" pulse is not really important     
   N.B. This sketch does not use the CRC to check the validity of the message - this could be done in a future version     
 */
 
