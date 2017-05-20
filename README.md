@@ -1,6 +1,8 @@
 # Maplin-N25FR-weather-station-scanner
 
-Use this sketch on an Arduino Uno with a cheap 433MHZ receiver to read the data coming from a Maplin weather station N25FR
+Use this sketch on an Arduino Uno with a cheap 433MHZ receiver to read the data coming from a Maplin weather station N25FR.
+
+
 
 - MESSAGE PROTOCOL
 
@@ -56,7 +58,7 @@ Temperature in C - Use the 12 bits (from above map), subtract 400 (0x190) and di
 
 Wind speed in m/s - Multiply 8 bits by 0.34 and round the result to one decimal place. So, value 0x04 is round(4 * 0.34) = 1.4 m/s. If you want mph instead of m/s, use another multiplication of 2.237 on the m/s result and round to one decimal place.
 
-Rainfall in mm - Multiply the 8 bits (should it be 12?) by 0.3 to get the total rainfall since the since the sensor was switched on. To get the "real" rainfall value - you have to work out the delta from a previously transmitted rainfall value with respect to the time between the two messages
+Rainfall in mm - Multiply the 8 bits (should it be 12?) by 0.3 to get the total rainfall since the outside sensor was powered up. To get the "real" rainfall value - you have to work out the delta from a previously transmitted rainfall value with respect to the time between the two messages
 
 - USEFUL LINKS
 
